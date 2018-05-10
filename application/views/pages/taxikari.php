@@ -25,13 +25,23 @@
                     </td>
                 </tr>
             <?php endforeach; ?>
+
         <?php else: ?>
-        <tr>
-            <td>
-                Nenašli sa žiadny taxikári!
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    Nenašli sa žiadny taxikári!
+                </td>
+            </tr>
+        <?php endif ?>
         </tbody>
     </table>
+    <div>
+    <ul class="pagination">
+        <?php foreach ($links as $link) {
+            echo  $link ;
+        } ?>
+    </ul>
+    </div>
 </div>
-<?php endif ?>
+
+

@@ -2,8 +2,9 @@
 
 class taxikari_query extends CI_Model
 {
-    public function getTaxikari()
+    public function getTaxikari($limit,$start)
     {
+        $this->db->limit($limit,$start);
         $query = $this->db->get('taxikar');
         if ($query->num_rows() > 0) {
             return $query->result();
@@ -26,6 +27,10 @@ class taxikari_query extends CI_Model
     }
     public function deleteTaxikara($ID){
         return $this->db->where('id',$ID)->delete('taxikar');
+    }
+
+    public function record_count() {
+        return $this->db->count_all("taxikar");
     }
 }
 

@@ -6,12 +6,6 @@
             }
             $data = array();
             $data['title'] = 'Taxi Služba';
-
-            if($page=='taxikari'){
-                $this->load->model('taxikari_query');
-                $data['taxikari'] = $this->taxikari_query->getTaxikari();
-
-            }
             $this->load->view('templates/header',$data);
             $this->load->view('templates/navigation');
             $this->load->view('pages/'.$page,$data);

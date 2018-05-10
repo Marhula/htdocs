@@ -6,7 +6,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/taxikari">Taxikári</a>
+                    <a class="nav-link" href="Taxikari/index">Taxikári</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
