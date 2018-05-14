@@ -14,7 +14,6 @@ class Taxikari extends CI_Controller{
         $config['base_url'] = base_url() . 'Taxikari/index';
         $config["total_rows"] = $total_row;
         $config["per_page"] = 5;
-        //$config['use_page_numbers'] = TRUE;
         $config['num_links'] = $total_row;
         $config["uri_segment"] = 3;
         $choice = $config["total_rows"] / $config["per_page"];
@@ -22,15 +21,20 @@ class Taxikari extends CI_Controller{
         $config['prev_link'] = 'Predošlí';
         $config['next_link'] = 'Ďalší';
 
-
-        $config['next_tag_open'] = '<li class="page-item"><a class="page-link">';
-        $config['next_tag_close'] = '</a></li>';
-        $config['prev_tag_open'] = '<li class="page-item"><a class="page-link">';
-        $config['prev_tag_close'] = '</a></li>';
-        $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">';
-        $config['cur_tag_close'] = '</a></li>';
-        $config['num_tag_open'] = '<li class="page-item"><a class="page-link">';
-        $config['num_tag_close'] = '</a></li>';
+        $config['full_tag_open']   = '<div class="pagging text-center"><nav><ul class="pagination">';
+        $config['full_tag_close']   = '</ul></nav></div>';
+        $config['num_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close']   = '</span></li>';
+        $config['cur_tag_open']   = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close']   = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close']   = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close']   = '</span></li>';
+        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close']   = '</span></li>';
 
         $this->pagination->initialize($config);
         $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -40,6 +44,13 @@ class Taxikari extends CI_Controller{
         $this->load->view('templates/header',['title'=>'Taxi Služba']);
         $this->load->view('templates/navigation');
         $this->load->view('pages/taxikari',$data);
+        $this->load->view('templates/footer');
+    }
+
+    public function pridat(){
+        $this->load->view('templates/header',['title'=>'Taxi Služba']);
+        $this->load->view('templates/navigation');
+        $this->load->view('pages/pridat_taxikara');
         $this->load->view('templates/footer');
     }
 
@@ -57,10 +68,10 @@ class Taxikari extends CI_Controller{
 
             $this->load->model('taxikari_query');
             $this->taxikari_query->addTaxikari($data);
-            return $this->index();
+            redirect(base_url()."Taxikari/index");
 
         } else {
-            redirect('pridat_taxikara');
+           $this->pridat();
         }
     }
     public function upravit($ID){
@@ -80,18 +91,15 @@ class Taxikari extends CI_Controller{
         if($this->form_validation->run()) {
 
             $data = $this->input->post();
-                        unset($data['submit']);
+            unset($data['submit']);
 
 
             $this->load->model('taxikari_query');
             $this->taxikari_query->updateTaxikari($data,$ID);
-            return $this->index();
+            redirect(base_url()."Taxikari/index");
 
         } else {
-            $this->load->view('templates/header',['title'=>'Taxi Služba']);
-            $this->load->view('templates/navigation');
-            $this->load->view('pages/pridat_taxikara');
-            $this->load->view('templates/footer');
+            $this->upravit($ID);
         }
     }
     public function detail($ID){
@@ -106,7 +114,7 @@ class Taxikari extends CI_Controller{
     public function delete($ID){
         $this->load->model('taxikari_query');
         $this->taxikari_query->deleteTaxikara($ID);
-        return $this->index();
+        redirect(base_url()."Taxikari/index");
 
     }
 }

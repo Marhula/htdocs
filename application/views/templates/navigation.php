@@ -6,10 +6,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="Taxikari/index">Taxikári</a>
+                    <a class="nav-link" href="<?php base_url()?>/Taxikari/index">Taxikári</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="<?php base_url()?>/Zakaznici/index">Zákazníci</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>

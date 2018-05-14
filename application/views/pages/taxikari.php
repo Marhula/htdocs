@@ -8,7 +8,7 @@
             <th>Meno</th>
             <th>Priezvisko</th>
             <th>Telefónne číslo</th>
-            <th><?php echo anchor('/pridat_taxikara', "Pridať Taxikára", ['class' => 'btn btn-primary']) ?></th>
+            <th><?php echo anchor(base_url().'Taxikari/pridat', "Pridať Taxikára", ['class' => 'btn btn-primary']) ?></th>
         </tr>
         </thead>
         <tbody>
@@ -36,11 +36,9 @@
         </tbody>
     </table>
     <div>
-    <ul class="pagination">
         <?php foreach ($links as $link) {
             echo  $link ;
         } ?>
-    </ul>
     </div>
 </div>
 

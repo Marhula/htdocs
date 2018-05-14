@@ -11,6 +11,6 @@
     <?php echo form_input(['name' => 'telCislo', 'placeholder' => 'Telefónne číslo', 'class' => 'form-control']);
     echo form_error('telCislo', '<span class="badge badge-danger">', '</span>'); ?>
 </div>
-<?php echo anchor('Taxikari/index', "Zrušiť", ['class' => 'btn btn-primary']) ?>
+<?php echo anchor(base_url()."Taxikari/index", "Zrušiť", ['class' => 'btn btn-primary']) ?>
 <?php echo form_submit(['name' => 'submit', 'value' => "Pridať", 'class' => 'btn btn-primary']); ?>
 <?php echo form_close(); ?>

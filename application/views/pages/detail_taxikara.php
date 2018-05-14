@@ -6,6 +6,7 @@
     <div class="col-lg-1"><h2><i class="el el-phone"></i></h2></div><div class="col-lg-11"><h5><?php echo $taxikari->telCislo; ?></h5></div>
 </div><br>
 <div class="row">
-    <div class="col-lg-1"><h2><i class="el el-calendar"></i></h2></div><div class="col-lg-11"><h5><?php echo $taxikari->zamestnany; ?></h5></div>
+    <div class="col-lg-1"><h2><i class="el el-map-marker"></i></h2></div><div class="col-lg-11"><h5><?php echo $taxikari->zamestnany; ?></h5></div>
 </div><br>
-<?php echo anchor('taxikari', "Späť", ['class' => 'btn btn-primary']) ?>
+
+<?php echo anchor(base_url()."/Taxikari/index", "Späť", ['class' => 'btn btn-primary']) ?>
