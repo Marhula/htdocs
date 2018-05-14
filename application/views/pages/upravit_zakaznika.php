@@ -24,5 +24,5 @@
         echo form_error('heslo', '<span class="badge badge-danger">', '</span>'); ?>
     </div>
 <?php echo anchor(base_url()."Zakaznici/index", "Zrušiť", ['class' => 'btn btn-primary']) ?>
-<?php echo form_submit(['name' => 'submit', 'value' => "Pridať", 'class' => 'btn btn-primary']); ?>
+<?php echo form_submit(['name' => 'submit', 'value' => "Upraviť", 'class' => 'btn btn-primary']); ?>
 <?php echo form_close(); ?>

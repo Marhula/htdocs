@@ -12,7 +12,7 @@
                     <a class="nav-link" href="<?php base_url()?>/Zakaznici/index">Zákazníci</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="<?php base_url()?>/Vozidla/index">Vozidlá</a>
                 </li>
             </ul>
         </div>
