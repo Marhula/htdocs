@@ -10,11 +10,11 @@
             $this->load->model('graph_model');
             $data['topkm'] = $this->graph_model->getTopAuta();
             $data['pocetAut'] = $this->graph_model->getPocetnostAut();
+            $data['smena'] = $this->graph_model->getNajdlhsiuSluzbu();
+            $data['cesty'] = $this->graph_model->getSumCiest();
             $this->load->view('templates/header',$data);
             $this->load->view('templates/navigation');
             $this->load->view('pages/'.$page,$data);
             $this->load->view('templates/footer');
-
-
         }
     }

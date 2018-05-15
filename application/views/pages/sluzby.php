@@ -45,3 +45,4 @@
         } ?>
     </div>
 </div>
+<?php echo anchor(base_url().'Sluzby/export', "Export do CSV", ['class' => 'btn btn-primary']) ?>
