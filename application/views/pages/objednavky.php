@@ -10,7 +10,7 @@
             <th>Posledná zmena</th>
             <th>Dátum</th>
             <th>Vzdialenosť</th>
-            <th><?php echo anchor(base_url().'Objednavky/pridat', "Pridať Objednavku", ['class' => 'btn btn-primary']) ?></th>
+            <th><?php echo anchor(base_url().'Objednavky/pridat', "Pridať Objednavku", ['class' => 'btn btn-primary']) ?><?php echo anchor(base_url().'Objednavky/export', "Export", ['class' => 'btn btn-primary']) ?></th>
 </tr>
 </thead>
 <tbody>
@@ -45,5 +45,7 @@
     <?php foreach ($links as $link) {
         echo  $link ;
     } ?>
+
 </div>
 </div>
+<?php echo anchor(base_url().'Objednavky/export', "Export do CSV", ['class' => 'btn btn-primary']) ?>

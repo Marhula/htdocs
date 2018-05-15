@@ -15,6 +15,18 @@ class sluzby_model extends CI_Model
         }
     }
 
+    public function getRawSluzby()
+    {
+        $this->db->order_by("id", "asc");
+        $this->db->limit();
+        $this->db->select('sluzba.ID as ID, concat(taxikar.meno,' . "' '" . ',taxikar.priezvisko) as taxikar, zaciatok_sluzby,dlzka_sluzby, concat(auto.znacka,' . "' '" . ',auto.model) as vozidlo, auto.spz as spz, ADDTIME(zaciatok_sluzby,dlzka_sluzby) as koniec');
+        $this->db->join('taxikar', 'taxikar.ID=sluzba.taxikar');
+        $this->db->join('auto', 'auto.ID=sluzba.auto_ID');
+        $query = $this->db->get('sluzba');
+        if ($query->num_rows() > 0) {
+            return $query;
+        }
+    }
     public function getDetailSluzby($ID)
     {
         $this->db->select('sluzba.ID as ID, concat(taxikar.ID, ' . "', '" . ',taxikar.meno,' . "' '" . ',taxikar.priezvisko,' . "', '" . ',taxikar.telCislo) as taxikar, zaciatok_sluzby,dlzka_sluzby, concat(auto.znacka,' . "' '" . ',auto.model,'."', '".',auto.spz) as vozidlo, ADDTIME(zaciatok_sluzby,dlzka_sluzby) as koniec');

@@ -128,5 +128,14 @@ class Sluzby extends CI_Controller
         $this->load->view('pages/detail_sluzby', $data);
         $this->load->view('templates/footer');
     }
+    public function export(){
+        $this->load->model('sluzby_model');
+        $this->load->dbutil();
+        $this->load->helper('download');
 
+        $query = $this->sluzby_model->getRawSluzby();
+
+        $filename = 'Sluzby.csv';
+        force_download($filename, $this->dbutil->csv_from_result($query));
+    }
 }

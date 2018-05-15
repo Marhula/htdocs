@@ -1,5 +1,7 @@
 <?php
-class Objednavky extends CI_Controller{
+
+class Objednavky extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -52,11 +54,11 @@ class Objednavky extends CI_Controller{
     public function pridat()
     {
         $this->load->model('objednavky_model');
-        $data['sluzby']=$this->objednavky_model->getSluzby();
-        $data['zakaznici']=$this->objednavky_model->getZakaznikov();
+        $data['sluzby'] = $this->objednavky_model->getSluzby();
+        $data['zakaznici'] = $this->objednavky_model->getZakaznikov();
         $this->load->view('templates/header', ['title' => 'Taxi Služba']);
         $this->load->view('templates/navigation');
-        $this->load->view('pages/pridat_objednavku',$data);
+        $this->load->view('pages/pridat_objednavku', $data);
         $this->load->view('templates/footer');
     }
 
@@ -82,9 +84,9 @@ class Objednavky extends CI_Controller{
     public function upravit($ID)
     {
         $this->load->model('objednavky_model');
-        $data['objednavka']=$this->objednavky_model->getObjednavka($ID);
-        $data['sluzby']=$this->objednavky_model->getSluzby();
-        $data['zakaznici']=$this->objednavky_model->getZakaznikov();
+        $data['objednavka'] = $this->objednavky_model->getObjednavka($ID);
+        $data['sluzby'] = $this->objednavky_model->getSluzby();
+        $data['zakaznici'] = $this->objednavky_model->getZakaznikov();
         $this->load->view('templates/header', ['title' => 'Taxi Služba']);
         $this->load->view('templates/navigation');
         $this->load->view('pages/upravit_objednavku', $data);
@@ -102,7 +104,7 @@ class Objednavky extends CI_Controller{
             $data = $this->input->post();
             unset($data['submit']);
             $this->load->model('objednavky_model');
-            $this->objednavky_model->updateObjednavka($data,$ID);
+            $this->objednavky_model->updateObjednavka($data, $ID);
             redirect(base_url() . "Objednavky/index");
 
         } else {
@@ -110,13 +112,15 @@ class Objednavky extends CI_Controller{
         }
     }
 
-    public function delete($ID){
+    public function delete($ID)
+    {
         $this->load->model('objednavky_model');
         $this->objednavky_model->deleteObjednavka($ID);
         redirect(base_url() . "Objednavky/index");
     }
 
-    public function detail($ID){
+    public function detail($ID)
+    {
         $this->load->model('objednavky_model');
         $data['objednavka'] = $this->objednavky_model->getDetailObjednavky($ID);
         $this->load->view('templates/header', ['title' => 'Taxi Služba']);
@@ -125,4 +129,15 @@ class Objednavky extends CI_Controller{
         $this->load->view('templates/footer');
     }
 
+    public function export()
+    {
+        $this->load->model('objednavky_model');
+        $this->load->dbutil();
+        $this->load->helper('download');
+
+        $query = $this->objednavky_model->getRawObjednavky();
+
+        $filename = 'Objednavky.csv';
+        force_download($filename, $this->dbutil->csv_from_result($query));
+    }
 }

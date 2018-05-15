@@ -1,6 +1,6 @@
 <?php
 class objednavky_model extends CI_Model{
-    public function getobjednavky($limit, $start)
+    public function getObjednavky($limit, $start)
     {
         $this->db->order_by("id", "asc");
         $this->db->limit($limit, $start);
@@ -10,6 +10,17 @@ class objednavky_model extends CI_Model{
         $query = $this->db->get('objednavka');
         if ($query->num_rows() > 0) {
             return $query->result();
+        }
+    }
+    public function getRawObjednavky()
+    {
+        $this->db->order_by("id", "asc");
+        $this->db->select("objednavka.ID as ID ,sluzba_ID,pocetKM,cena,concat(zakaznik.ID,', ',zakaznik.meno,' ',zakaznik.priezvisko) as zakaznik,stav,kedy,posledna_zmena,concat('od ',sluzba.zaciatok_sluzby,' do ', ADDTIME(sluzba.zaciatok_sluzby,sluzba.dlzka_sluzby)) as trvanie");
+        $this->db->join('sluzba', 'sluzba.ID=objednavka.sluzba_ID');
+        $this->db->join('zakaznik', 'zakaznik.ID=objednavka.zakaznik_ID');
+        $query = $this->db->get('objednavka');
+        if ($query->num_rows() > 0) {
+            return $query;
         }
     }
     public function getDetailObjednavky($ID){
