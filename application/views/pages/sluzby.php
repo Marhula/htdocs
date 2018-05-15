@@ -9,7 +9,7 @@
             <th>Začíatok</th>
             <th>Dĺžka</th>
             <th>Koniec</th>
-            <th><?php echo anchor(base_url().'Sluzby/pridat', "Pridať Vozidlo", ['class' => 'btn btn-primary']) ?></th>
+            <th><?php echo anchor(base_url().'Sluzby/pridat', "Pridať Službu", ['class' => 'btn btn-primary']) ?></th>
         </tr>
         </thead>
         <tbody>
