@@ -14,6 +14,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php base_url()?>/Vozidla/index">Vozidlá</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php base_url()?>/Sluzby/index">Služby</a>
+                </li>
             </ul>
         </div>
     </nav>
