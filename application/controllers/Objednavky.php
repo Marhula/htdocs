@@ -79,4 +79,50 @@ class Objednavky extends CI_Controller{
         }
     }
 
+    public function upravit($ID)
+    {
+        $this->load->model('objednavky_model');
+        $data['objednavka']=$this->objednavky_model->getObjednavka($ID);
+        $data['sluzby']=$this->objednavky_model->getSluzby();
+        $data['zakaznici']=$this->objednavky_model->getZakaznikov();
+        $this->load->view('templates/header', ['title' => 'Taxi Služba']);
+        $this->load->view('templates/navigation');
+        $this->load->view('pages/upravit_objednavku', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function upravitObjednavku($ID)
+    {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('pocetKM', 'Vzdialenosť', 'required');
+        $this->form_validation->set_rules('cena', 'Cena', 'required');
+        $this->form_validation->set_rules('kedy', 'Deň a čas odvozu', 'required');
+
+        if ($this->form_validation->run()) {
+            $data = $this->input->post();
+            unset($data['submit']);
+            $this->load->model('objednavky_model');
+            $this->objednavky_model->updateObjednavka($data,$ID);
+            redirect(base_url() . "Objednavky/index");
+
+        } else {
+            $this->upravit($ID);
+        }
+    }
+
+    public function delete($ID){
+        $this->load->model('objednavky_model');
+        $this->objednavky_model->deleteObjednavka($ID);
+        redirect(base_url() . "Objednavky/index");
+    }
+
+    public function detail($ID){
+        $this->load->model('objednavky_model');
+        $data['objednavka'] = $this->objednavky_model->getDetailObjednavky($ID);
+        $this->load->view('templates/header', ['title' => 'Taxi Služba']);
+        $this->load->view('templates/navigation');
+        $this->load->view('pages/detail_objednavka', $data);
+        $this->load->view('templates/footer');
+    }
+
 }

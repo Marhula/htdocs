@@ -4,7 +4,7 @@ class objednavky_model extends CI_Model{
     {
         $this->db->order_by("id", "asc");
         $this->db->limit($limit, $start);
-        $this->db->select("objednavka.ID as ID ,sluzba_ID,pocetKM,cena,concat(zakaznik.ID,', ',zakaznik.meno,' ',zakaznik.priezvisko) as zakaznik,stav,kedy,posledna_zmena");
+        $this->db->select("objednavka.ID as ID ,sluzba_ID,pocetKM,cena,concat(zakaznik.ID,', ',zakaznik.meno,' ',zakaznik.priezvisko) as zakaznik,stav,kedy,posledna_zmena,concat('od ',sluzba.zaciatok_sluzby,' do ', ADDTIME(sluzba.zaciatok_sluzby,sluzba.dlzka_sluzby)) as trvanie");
         $this->db->join('sluzba', 'sluzba.ID=objednavka.sluzba_ID');
         $this->db->join('zakaznik', 'zakaznik.ID=objednavka.zakaznik_ID');
         $query = $this->db->get('objednavka');
@@ -12,7 +12,15 @@ class objednavky_model extends CI_Model{
             return $query->result();
         }
     }
-
+    public function getDetailObjednavky($ID){
+        $this->db->select("objednavka.ID as ID ,sluzba_ID,pocetKM,cena,concat(zakaznik.ID,', ',zakaznik.meno,' ',zakaznik.priezvisko) as zakaznik,stav,kedy,posledna_zmena,concat('od ',sluzba.zaciatok_sluzby,' do ', ADDTIME(sluzba.zaciatok_sluzby,sluzba.dlzka_sluzby)) as trvanie");
+        $this->db->join('sluzba', 'sluzba.ID=objednavka.sluzba_ID');
+        $this->db->join('zakaznik', 'zakaznik.ID=objednavka.zakaznik_ID');
+        $query = $this->db->get('objednavka');
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        }
+    }
     public function record_count()
     {
         return $this->db->count_all("objednavka");
@@ -51,5 +59,9 @@ class objednavky_model extends CI_Model{
     public function updateObjednavka($data, $ID){
         return $this->db->where('ID',$ID)->update('objednavka', $data);
 
+    }
+
+    public function deleteObjednavka($ID){
+        return $this->db->where('ID',$ID)->delete('objednavka');
     }
 }
