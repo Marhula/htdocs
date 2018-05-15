@@ -6,16 +6,19 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php base_url()?>/Taxikari/index">Taxikári</a>
+                    <a class="nav-link" href="<?php echo base_url()?>/Taxikari/index">Taxikári</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php base_url()?>/Zakaznici/index">Zákazníci</a>
+                    <a class="nav-link" href="<?php echo base_url()?>/Zakaznici/index">Zákazníci</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php base_url()?>/Vozidla/index">Vozidlá</a>
+                    <a class="nav-link" href="<?php echo base_url()?>/Vozidla/index">Vozidlá</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php base_url()?>/Sluzby/index">Služby</a>
+                    <a class="nav-link" href="<?php echo base_url()?>/Sluzby/index">Služby</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo  base_url()?>/Objednavky/index">Objednávky</a>
                 </li>
             </ul>
         </div>
