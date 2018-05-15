@@ -105,7 +105,7 @@ class Vozidla extends CI_Controller
             $this->vozidla_model->updateVozidlo($data, $ID);
             redirect(base_url() . "Vozidla/index");
         } else {
-            $this->pridat();
+            $this->upravit($ID);
         }
     }
 
