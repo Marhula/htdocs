@@ -27,18 +27,19 @@
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            <?php foreach (array_reverse($pocetAut) as $row) echo "['".$row->auto."','". $row->najazdeneKM ."'],";?>
+            ['Značka', 'Počet'],
+            <?php foreach (array_reverse($pocetAut) as $row) echo "['".$row->znacka."',". $row->pocetAut ."],";?>
         ]);
 
         var options = {
-            title: 'My Daily Activities',
+            title: 'Percentualne zastupenie značiek automilov v našej garáži',
             is3D: true,
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        var chart = new google.visualization.PieChart(document.getElementById('pocet'));
         chart.draw(data, options);
     }
 </script>
 <h1>Dashboard</h1>
-<div id="najazdeneKM" style="width: 80%; height: 60%;"></div>
+<div id="najazdeneKM" style="width: 50%; height: 60%"></div>
+<div id="pocet" style="width: 100%; height: 120%;"></div>

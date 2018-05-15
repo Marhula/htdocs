@@ -9,7 +9,7 @@
             $data['title'] = 'Taxi Služba';
             $this->load->model('graph_model');
             $data['topkm'] = $this->graph_model->getTopAuta();
-            $data['pocetAut'] = $this->graph_model->getTopAuta();
+            $data['pocetAut'] = $this->graph_model->getPocetnostAut();
             $this->load->view('templates/header',$data);
             $this->load->view('templates/navigation');
             $this->load->view('pages/'.$page,$data);
